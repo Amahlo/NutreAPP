@@ -8,17 +8,17 @@ public class Video {
     private UUID id;
     private String titulo;
     private String descripcion;
-    private String URL;
+    private String url;
     private Categoria categoria;
 
     public Video() {
     }
 
-    public Video(UUID id, String titulo, String descripcion, String uRL, Categoria categoria) {
+    public Video(UUID id, String titulo, String descripcion, String url, Categoria categoria) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        URL = uRL;
+        this.url = url;
         this.categoria = categoria;
     }
 
@@ -46,12 +46,12 @@ public class Video {
         this.descripcion = descripcion;
     }
 
-    public String getURL() {
-        return URL;
+    public String getUrl() {
+        return url;
     }
 
-    public void setURL(String uRL) {
-        URL = uRL;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Categoria getCategoria() {
