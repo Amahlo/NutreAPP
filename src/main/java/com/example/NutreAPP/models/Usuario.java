@@ -43,7 +43,7 @@ public class Usuario {
     // Creando relaciones
     private List<Visualizacion> vizualizaciones;
 
-    public Usuario()
+    public Usuario() {
     }
 
     public Usuario(UUID id, String nombre, String correo, Rol rol, Departamento departamento, String contrasena_hash) {
