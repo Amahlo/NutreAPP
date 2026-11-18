@@ -33,4 +33,20 @@ public class VideoServicio {
     public List<Video> buscarTodos() {
         return this.repositorio.findAll();
     }
+
+    public Video modificar(UUID id, Video datos) {
+        Optional<Video> videoBuscado = this.repositorio.findById(id);
+        if (!videoBuscado.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        } else {
+            Video videoEncontrado = videoBuscado.get();
+
+            videoEncontrado.setTitulo(datos.getTitulo());
+            videoEncontrado.setCategoria(datos.getCategoria());
+            videoEncontrado.setUrl(datos.getUrl());
+
+            return this.repositorio.save(videoEncontrado);
+        }
+    }
 }

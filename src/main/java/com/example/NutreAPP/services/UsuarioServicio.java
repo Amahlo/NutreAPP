@@ -40,7 +40,25 @@ public class UsuarioServicio {
     public List<Usuario> buscarTodos() {
         return this.repositorio.findAll();
     }
-    // metodo para modificar
+
+    // metodo para modificar/actualizar
+    public Usuario modificar(UUID id, Usuario datos) {
+        Optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+        if (!usuarioBuscado.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        } else {
+            // 1. precargar la info que existe actualmente en DB
+            Usuario usuarioEncontrado = usuarioBuscado.get();
+
+            // 2. Espacio para modificar solo las propiedades permitidas
+            usuarioEncontrado.setNombre(datos.getNombre());
+            usuarioEncontrado.setRol(datos.getRol());
+
+            // 3. Espacio para volver a guardar el usuario que se acaba de actualizar
+            return this.repositorio.save(usuarioEncontrado);
+        }
+    }
     // metodo para eliminar
 
     // metodo para buscar por departamento yol
