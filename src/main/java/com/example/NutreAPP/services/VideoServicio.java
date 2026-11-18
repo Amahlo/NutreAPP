@@ -49,4 +49,15 @@ public class VideoServicio {
             return this.repositorio.save(videoEncontrado);
         }
     }
+
+    public boolean eliminar(UUID id) {
+        Optional<Video> videoBuscado = this.repositorio.findById(id);
+        if (!videoBuscado.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        } else {
+            this.repositorio.deleteById(id);
+            return true;
+        }
+    }
 }

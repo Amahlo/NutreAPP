@@ -33,4 +33,15 @@ public class VisualizacionServicio {
     public List<Visualizacion> buscarTodos() {
         return this.repositorio.findAll();
     }
+
+    public boolean eliminar(UUID id) {
+        Optional<Visualizacion> visualizacionBuscado = this.repositorio.findById(id);
+        if (!visualizacionBuscado.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        } else {
+            this.repositorio.deleteById(id);
+            return true;
+        }
+    }
 }
